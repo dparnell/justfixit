@@ -13,3 +13,4 @@ coffeescript
 bootstrap
 accounts-password
 underscore
+accounts-github

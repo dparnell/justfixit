@@ -3,17 +3,69 @@
 </head>
 
 <body>
-  {{loginButtons}}
-  {{> projects}}
+  {{> page}}
 </body>
 
-<template name="projects">
-  <div id="projects">
-    <h1>Projects</h1>
-    <ul>
-      {{#each projects}}
-      <li id="{{_id}}">{{name}}</li>
-      {{/each}}
-    </ul>
+<template name="page">
+  <div class="container">
+    <div class="row">
+      <div class="span1"> </div>
+
+      <div class="span10">
+        <div class="header row">
+          <div class="span5">
+            <h3 style="margin-bottom: 0px">Just Fix It!</h3>
+          </div>
+          <div class="span5">
+            <div style="float: right">
+              {{loginButtons align="right"}}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4">
+            <ul>
+              {{#each projects}}
+              <li id="{{_id}}">{{name}}</li>
+              {{/each}}
+            </ul>
+
+            {{#if currentUser}}
+	    <a href="#" id="add" role="button" class="btn">New Project</a>
+            {{/if}}
+
+          </div>
+          <div class="span6">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="span1"> </div>
+    </div>
   </div>
+
+  <div id="add-project" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Project Details</h3>
+    </div>
+    <div class="modal-body">
+      <form>
+	<fieldset>
+	  <label>Project Name</label>
+	  <input type="text" placeholder="Give me a name..." id="project-name" class="span4"/>
+	  <label>Description</label>
+	  <textarea id="project-description" class="span4" placeholder="What is this project about..."></textarea>
+	  <label><input type="checkbox" id="public-project"/> Public Project</label>
+	</fieldset>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Create Project</button>
+    </div>
+  </div>
+
 </template>

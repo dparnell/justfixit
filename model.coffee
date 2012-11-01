@@ -16,10 +16,12 @@ Meteor.methods
         createProject: (options) ->
                 # TODO: add validations
 
-                Projects.insert
-                        owner: this.userId
-                        name: options.name
-                        description: options.description
-                        public: options.public
-                        members: []
-
+                if this.userId
+                        Projects.insert
+                                owner: this.userId
+                                name: options.name
+                                description: options.description
+                                public: options.public
+                                members: []
+                else
+                        throw new Meteor.Error 403, 'Login required'
